@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2024 Celina Sophie Kalus <hello@celinakalus.de>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	chosen {
+		/delete-property/ zephyr,ipc_shm;
+		zephyr,log_ipc = &ipc0;
+
+		zephyr,console = &uart8;
+		zephyr,shell-uart = &uart8;
+	};
+
+	ipc0: ipc0 {
+		compatible = "zephyr,ipc-openamp-static-vrings";
+		memory-region = <&sram4>;
+		mboxes = <&mailbox 10>, <&mailbox 11>;
+		mbox-names = "tx", "rx";
+		role = "remote";
+		status = "okay";
+	};
+};
+
+&uart8 {
+	status = "okay";
+};
+
+&mailbox {
+	status = "okay";
+};
