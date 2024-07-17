@@ -21,6 +21,12 @@ config SOC_CC1352R
 	help
 	  CC1352R
 
+config SOC_CC1312R
+	bool
+	select SOC_SERIES_CC13X2_CC26X2
+	help
+	  CC1312R
+
 config SOC_CC2652P
 	bool
 	select SOC_SERIES_CC13X2_CC26X2
@@ -39,5 +45,6 @@ config SOC_SERIES
 config SOC
 	default "cc1352p" if SOC_CC1352P
 	default "cc1352r" if SOC_CC1352R
+	default "cc1312r" if SOC_CC1312R
 	default "cc2652p" if SOC_CC2652P
 	default "cc2652r" if SOC_CC2652R

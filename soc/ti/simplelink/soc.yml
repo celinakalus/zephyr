@@ -5,6 +5,7 @@ family:
     socs:
     - name: cc1352p
     - name: cc1352r
+    - name: cc1312r
     - name: cc2652p
     - name: cc2652r
   - name: cc13x2x7_cc26x2x7
