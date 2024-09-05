@@ -1,0 +1,13 @@
+identifier: stm3241g_eval
+name: ST STM3241G Evaluation
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 192
+supported:
+  - watchdog
+  - counter
+vendor: st
