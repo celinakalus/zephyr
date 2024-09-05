@@ -43,14 +43,14 @@ static int drv_stop_rx(const struct device *dev);
 
 #if defined(CONFIG_IEEE802154_CC13XX_CC26XX_SUB_GHZ_CUSTOM_RADIO_SETUP)
 /* User-defined CMD_PROP_RADIO_DIV_SETUP structures */
-#if defined(CONFIG_SOC_CC1352R)
+#if defined(CONFIG_SOC_CC1352R) || defined(CONFIG_SOC_CC1312R)
 extern volatile rfc_CMD_PROP_RADIO_DIV_SETUP_t ieee802154_cc13xx_subg_radio_div_setup;
 #elif defined(CONFIG_SOC_CC1352P) || defined(CONFIG_SOC_CC1352P7)
 extern volatile rfc_CMD_PROP_RADIO_DIV_SETUP_PA_t ieee802154_cc13xx_subg_radio_div_setup;
 #endif /* CONFIG_SOC_CC1352x, extern RADIO_DIV_SETUP */
 #else
 
-#if defined(CONFIG_SOC_CC1352R)
+#if defined(CONFIG_SOC_CC1352R) || defined(CONFIG_SOC_CC1312R)
 /* Radio register overrides for CC13x2R (note: CC26x2 does not support sub-GHz radio)
  * from SmartRF Studio (200kbps, 50kHz deviation, 2-GFSK, 311.8kHz Rx BW),
  * approximates SUN FSK PHY, 915 MHz band, operating mode #3.
@@ -138,7 +138,7 @@ static uint32_t rf_prop_overrides_tx_20[] = {
 #endif /* CONFIG_SOC_CC1352x */
 
 /* Radio setup command for CC13xx */
-#if defined(CONFIG_SOC_CC1352R)
+#if defined(CONFIG_SOC_CC1352R) || defined(CONFIG_SOC_CC1312R)
 static volatile rfc_CMD_PROP_RADIO_DIV_SETUP_t ieee802154_cc13xx_subg_radio_div_setup = {
 	.commandNo = CMD_PROP_RADIO_DIV_SETUP,
 #elif defined(CONFIG_SOC_CC1352P) || defined(CONFIG_SOC_CC1352P7)
@@ -182,7 +182,7 @@ static volatile rfc_CMD_PROP_RADIO_DIV_SETUP_PA_t ieee802154_cc13xx_subg_radio_d
 #if defined(CONFIG_IEEE802154_CC13XX_CC26XX_SUB_GHZ_CUSTOM_POWER_TABLE)
 extern RF_TxPowerTable_Entry ieee802154_cc13xx_subg_power_table[];
 
-#elif defined(CONFIG_SOC_CC1352R)
+#elif defined(CONFIG_SOC_CC1352R) || defined(CONFIG_SOC_CC1312R)
 static const RF_TxPowerTable_Entry ieee802154_cc13xx_subg_power_table[] = {
 	{ -20, RF_TxPowerTable_DEFAULT_PA_ENTRY(0, 3, 0, 2) },
 	{ -15, RF_TxPowerTable_DEFAULT_PA_ENTRY(1, 3, 0, 3) },
