@@ -182,7 +182,11 @@ static int send_packet_socket(struct packet_data *packet)
 		dst.sll_halen = sizeof(struct net_eth_addr);
 
 		/* FIXME: assume IP data atm */
+#if defined(CONFIG_NET_L2_IEEE802154)
+		dst.sll_protocol = htons(ETH_P_IEEE802154);
+#else
 		dst.sll_protocol = htons(ETH_P_IP);
+#endif
 
 		ret = net_bytes_from_str(
 			dst.sll_addr,
